@@ -1,0 +1,14 @@
+<a class="settings-link" ng-click="showSettings = true">Настройки</a>
+<div class="settings-container" ng-show="showSettings">
+  <div class="settings-title">Настройки
+    <span class="settings-close" ng-click="showSettings = false">&#10006;</span></div>
+  <div class="settings-content">
+    <h4 class="settings-heading">Личные данные</h4>
+    <div class="settings-section">
+      <h5 class="settings-fieldname">Полное имя</h5>
+      <input class="settings-input" ng-model="Settings.user.profile.fullname" type="text" placeholder="Ваши ФИО">
+      <h5 class="settings-fieldname">Полное имя</h5>
+      <input class="settings-input" ng-model="Settings.user.profile.fullname" type="text" placeholder="Ваши ФИО">
+    </div>
+  </div>
+</div>
