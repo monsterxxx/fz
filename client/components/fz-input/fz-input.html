@@ -1,7 +1,24 @@
 <div class="fz-input__indentation">
   <div class="fz-input__container">
-    <input class="fz-input__input" type="text" name="name" value="hello" placeholder="">
-    <div class="fz-input__button fz-input__button--ok" ng-show="false">&#10004;</div>
-    <div class="fz-input__button fz-input__button--cancel" ng-show="false">&#10006;</div>
+    <form
+      name="form"
+      ng-submit="vm.onOk(); form.$setPristine()">
+      <input
+        class="fz-input__input"
+        ng-class="{'fz-input__input--dirty': form.input.$dirty}"
+        type="text"
+        name="input" ng-model="vm.model"
+        placeholder="{{vm.placeholder}}">
+      <div
+        class="fz-input__button fz-input__button--ok"
+        ng-show="form.input.$dirty"
+        ng-click="vm.onOk(); form.$setPristine()">
+        &#10004;</div>
+      <div
+        class="fz-input__button fz-input__button--cancel"
+        ng-show="form.input.$dirty"
+        ng-click="vm.cancel(); form.$setPristine()">
+        &#10006;</div>
+    </form>
   </div>
 </div>

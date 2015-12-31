@@ -1,0 +1,14 @@
+<a class="fz-user-settings__link"
+  ng-show="vm.user"
+  ng-click="showSettings=true">
+  <svg class="fz-user-settings__link-icon"
+    ng-class="{'fz-user-settings__link-icon--alert': !vm.user.profile.fullname}">
+    <use xlink:href="#shape-cog"></use></svg>▾
+</a>
+<fz-popup show="showSettings" title="Настройки">
+  <h4 class="fz-user-settings__heading">Личные данные</h4>
+  <div class="fz-user-settings__section">
+    <h5 class="fz-user-settings__fieldname">Полное имя</h5>
+    <fz-input model="vm.user.profile.fullname" on-ok="vm.updCurrUser()" placeholder="Ваши ФИО"></fz-input>
+  </div>
+</fz-popup>

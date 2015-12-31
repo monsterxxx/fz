@@ -1,29 +1,49 @@
-ps-settings
-  .settings-link
-    position: absolute
-    right: 10px
-    top: 40px
-  .settings-container
+.fz-user-settings
+
+  &__link
+    margin-right: 10px
+    float: right
+    color: white
+
+  &__link-icon
+    width: 18px
+    height: 18px
+    margin-right: 4px
+    vertical-align: middle
+    fill-rule: nonzero
+    fill: white
+
+  &__link-icon--alert
+    @extend .fz-animations-alert
+
+  &__container
     @extend .popup-container
-  .settings-title
+
+  &__title
     @extend .popup-title
-  .settings-close
+
+  &__close
     @extend .popup-close
-  .settings-content
+
+  &__content
     @extend .popup-content
-  .settings-heading
+
+  &__heading
     margin-top: 16px
     margin-bottom: 0
     color: rgba(#000, .87)
-  .settings-section
+
+  &__section
     padding-left: 12px
-  .settings-fieldname
+
+  &__fieldname
     margin-top: 8px
     margin-bottom: 0
     font-size: 11px
     color: rgba(#000, .54)
     text-transform: uppercase
-  .settings-input
+
+  &__input
     width: 100%
     padding: 8px
     padding-left: 3px

@@ -1,0 +1,35 @@
+.fz-popup
+  &__container
+    position: absolute
+    top: 42px
+    left: 10px
+    right: 10px
+    margin-right: auto
+    margin-left: auto
+    max-width: 500px
+    background-color: white
+    border: 1px solid #ccc
+    border-radius: $default-boder-radius
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px 0px
+    box-sizing: border-box
+  &__close
+    position: absolute
+    right: 12px
+    line-height: 32px
+    color: black
+    cursor: pointer
+  &__title
+    padding: 0 12px
+    font-weight: bold
+    line-height: 32px
+    color: white
+    cursor: default
+    background-color: #333
+    border-top-left-radius: $default-boder-radius
+    border-top-right-radius: $default-boder-radius
+    .fz-popup__close
+      position: static
+      float: right
+      color: #fff
+  &__content
+    padding: 0 12px 16px

@@ -1,0 +1,19 @@
+<head>
+  <title>FightZona Alpha 0.0.0</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body ng-app="fz" ng-strict-di="">
+  <div ng-include src="'client/styles/shapes.html'"></div>
+
+  <header>
+    <span class="brand">Fight<span class="z">Z</span>ona <span class="version">&#945;</span></span>
+    <login-buttons></login-buttons>
+    <fz-user-settings></fz-user-settings>
+  </header>
+
+  <div class="fz-content">
+    <div ui-view=""></div>
+  </div>
+
+</body>

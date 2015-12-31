@@ -20,3 +20,4 @@ fourseven:scss@=3.2.0
 seba:minifiers-autoprefixer
 accounts-password
 dotansimha:accounts-ui-angular
+angularui:angular-ui-router

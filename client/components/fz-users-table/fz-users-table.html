@@ -1,0 +1,32 @@
+<h4>Пользователи</h4>
+
+<table class="fz-table">
+  <thead>
+    <tr>
+      <td></td>
+      <td>№</td>
+      <td>Полное имя</td>
+      <td>login</td>
+      <td>email</td>
+      <td>Клиент</td>
+      <td>Тренер</td>
+      <td>Админ</td>
+      <td>Мастер</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in vm.users">
+      <td></td>
+      <td>{{$index + 1}}</td>
+      <!-- <td>{{user.profile.fullname}}</td> -->
+      <td class="tbl-input"><input ng-model="user.profile.fullname" type="text" placeholder="Введите ФИО"></td>
+      <td>{{user.username}}</td>
+      <td>{{user.emails[0].address}}</td>
+      <td class="tbl-check"><input type="checkbox" ng-model="user.settings.client" class="" /></td>
+      <td class="tbl-check"><input type="checkbox" ng-model="user.settings.trainer" class="" /></td>
+      <td class="tbl-check"><input type="checkbox" ng-model="user.settings.admin" class="" /></td>
+      <td class="tbl-check"><input type="checkbox" ng-model="user.settings.master" class="" /></td>
+      <td><input type="button" ng-click="vm.updUser(user._id)" value="Сохранить изменения" /></td>
+    </tr>
+  </tbody>
+</table>
