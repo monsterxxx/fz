@@ -1,0 +1,38 @@
+.fz-list
+  &__container
+    max-width: 500px
+    line-height: 32px
+
+  &__title
+    font-weight: bold
+    // border-bottom: 1px solid black
+    cursor: pointer
+
+  &__toggle
+    margin-right: 6px
+    float: left
+    transform: rotate(-90deg)
+
+    &--expanded
+      transform: rotate(0)
+
+  &__menu
+    margin-left: 22px
+    background-color: #9E9E9E
+
+    &-btn
+      display: inline-block
+      width: 30px
+      text-align: center
+      cursor: pointer
+
+  &__content
+    padding-left: 16px
+
+.fz-list--level-1
+
+  >.fz-list
+
+    &__container
+      padding-left: 6px
+      background-image: repeating-linear-gradient(to bottom, transparent, transparent 32px, #E0E0E0 32px, #E0E0E0 64px)

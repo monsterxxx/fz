@@ -6,8 +6,8 @@ if (Meteor.isClient) {
     // 'angular-meteor.auth',
     'accounts.ui',
     'ui.router',
+    'multi-transclude',
     //COMPONENTS
-    'fz.input',
     'fz.user-settings',
     'fz.users-table',
     'fz.clients-table',
@@ -27,6 +27,13 @@ if (Meteor.isClient) {
 
     $urlRouterProvider.otherwise('/');
 
+  })
+
+  .run(function ($state, $rootScope) {
+    $rootScope.$state = $state;
+    $rootScope.log = function (message) {
+      console.log(message);
+    };
   });
 
 }

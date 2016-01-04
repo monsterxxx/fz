@@ -2,13 +2,13 @@
 // 'use strict';
 
 angular
-  .module('fz.input', [])
-  .directive('fzInput', Dir);
+  .module('fz.input-submit', [])
+  .directive('fzInputSubmit', Dir);
 
 function Dir() {
   var directive = {
     restrict: 'E',
-    templateUrl: 'client/components/fz-input/fz-input.html',
+    templateUrl: 'client/components/fz-input-submit/fz-input-submit.html',
     scope: {},
     bindToController: {
       model: '=',

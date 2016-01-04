@@ -1,0 +1,19 @@
+<div class="fz-list__container">
+  <div class="fz-list__title" ng-click="list.expanded = !list.expanded">
+    <span class="fz-list__toggle" ng-class="{'fz-list__toggle--expanded': list.expanded}">▾</span>
+    {{list.listTitle}}
+    <div class="fz-list__menu-btn" ng-show="list.expanded && (list.showNew !== undefined)" ng-click="list.add($event)">&#10133;</div>
+  </div>
+
+  <!-- seemed ugly -->
+  <!-- <div class="fz-list__menu" ng-show="list.expanded && (list.showNew !== undefined)">
+    <div class="fz-list__menu-btn" ng-show="list.showNew !== undefined" ng-click="list.showNew = true">&#10133;</div>{{list.showNew}}
+  </div> -->
+
+  <!-- Wait for ANGULAR 1.5 -->
+  <!-- <div class="fz-list__new-item" ng-show="list.showNew">
+    <div class="fz-list__new-item-title">Новая запись</div>
+    <div class="" ng-transclude="new"></div>
+  </div> -->
+  <div class="fz-list__content" ng-if="list.expanded" ng-transclude="list"></div>
+</div>

@@ -24,7 +24,7 @@ function Ctrl($scope, $reactive) {
 
   var vm = this;
   $reactive(vm).attach($scope);
-  vm.helpers({ clients: () => Clients.find({}, { sort: { fullname: 1 } }) });
+  vm.helpers({ clients: () => Clients.find({}, { sort: { name: 1 } }) });
   vm.newClient = {};
   vm.addClient = addClient;
   vm.updClient = updClient;

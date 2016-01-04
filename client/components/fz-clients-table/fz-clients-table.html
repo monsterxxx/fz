@@ -13,7 +13,7 @@
     <tr ng-repeat="client in vm.clients">
       <td></td>
       <td>{{$index + 1}}</td>
-      <td class="tbl-text">{{client.fullname}}</td>
+      <td class="tbl-text">{{client.name}}</td>
       <td class="tbl-check"><input type="checkbox" ng-model="client.came" class="" /></td>
       <td class="tbl-btn" ng-click="vm.delClient(client)">&#10006;</td>
     </tr>
@@ -22,7 +22,7 @@
       <td ng-hide="showForm" ng-repeat="i in [1,2,3,4]"></td>
       <td ng-show="showForm">{{clients.length + 1}}</td>
       <td class="tbl-input" ng-show="showForm"><form class="" ng-show="showForm" ng-submit="vm.addClient(); vm.newClient={}; showForm = false;" novalidate>
-        <input name="fullname" ng-model="vm.newClient.fullname" type="text" placeholder="Введите ФИО"></form></td>
+        <input name="name" ng-model="vm.newClient.name" type="text" placeholder="Введите ФИО"></form></td>
       <td class="tbl-btn" ng-show="showForm" ng-click="vm.addClient(); vm.newClient={}; showForm = false;">&#10004;</td>
       <td class="tbl-btn" ng-show="showForm" ng-click="vm.newClient={}; showForm = false;">&#10006;</td>
     </tr>

@@ -1,4 +1,5 @@
 @import 'variables'
+@import 'elements/elements'
 @import 'animations/animations'
 @import 'packages/accounts-ui'
 @import '../components/components'
@@ -20,34 +21,6 @@ a
   text-decoration: none
   cursor: pointer
 
-.btn
-  display: inline-block
-  padding: 6px 12px
-  margin-left: 14px
-  font-size: 14px
-  color: #ffffff
-  text-align: center
-  text-decoration: none
-  cursor: pointer
-  border-style: solid
-  border-width: 1px
-  border-radius: $default-boder-radius
-  &.active
-    position: relative
-    top: 1px
-
-.btn-ok
-  background-color: #45c745
-  border-color: #18ab29
-  &:hover
-    background-color: #42bd2a
-
-.btn-cancel
-  background-color: #d0451b
-  border-color: #942911
-  &:hover
-    background-color: #bc3315
-
 header
   width: 100%
   padding: 0
@@ -66,10 +39,6 @@ header
     font-size: 16px
     font-style: italic
     color: grey
-
-
-.fz-content
-  margin-left: 10px
 
 .fz-table
   border-spacing: 0 2px
@@ -109,3 +78,6 @@ header
       border: none
       background: none
       // background-color: #f9f9f9
+
+.fz__content
+  // padding-left: 6px

@@ -1,0 +1,25 @@
+<fz-list class="fz-list--level-1" list-title="'Группы'" show-new="vm.showNew">
+
+  <!-- <fz-list-new>Форма новой записи</fz-list-new> -->
+  <fz-form-group-new group="vm.newGroup" show="vm.showNew"></fz-form-group-new>
+
+  <fz-list-list>
+
+    <fz-list-item-group ng-repeat="group in vm.groups" group-name="{{group.name}}" group-id="{{group._id}}">
+    </fz-list-item-group>
+
+    <!-- <div ng-repeat="group in vm.groups" ng-controller="GroupItemCtrl as groupItem">
+      <fz-list list-title="group.name" show-new="groupItem.showNew">
+
+        <fz-window show="groupItem.showNew" window-title="Добавление клиента">
+          <fz-form-client-add></fz-form-client-add>
+        </fz-window>
+
+        {{group.name}}
+
+      </fz-list>
+    </div> -->
+
+  </fz-list-list>
+
+</fz-list>

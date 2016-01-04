@@ -10,12 +10,28 @@ angular
         templateUrl: 'client/views/admin/admin.html',
         resolve: {
           currentUser: ($q) => {
-            if (Meteor.userId() == null || !Meteor.user().settings.admin) {
-              return $q.reject();
-            }
-            else {
-              return $q.resolve();
-            }
+            var deferred = $q.defer();
+
+            Meteor.autorun(function () {
+              Meteor.subscribe('users_extended', {
+                onReady: function () {
+                  console.log(Meteor.loggingIn());
+                  if (!Meteor.loggingIn()) {
+                    console.log(Meteor.user());
+                    if (Meteor.user() == null) {
+                      deferred.reject('AUTH_REQUIRED');
+                    } else if (!Meteor.user().settings.admin) {
+                      deferred.reject('ADMIN_PERMISSION_REQUIRED');
+                    } else {
+                      deferred.resolve(Meteor.user());
+                    }
+                  }
+                },
+                onStop: deferred.reject
+              });
+            });
+
+            return deferred.promise;
           }
         }
       });

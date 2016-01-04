@@ -2,12 +2,38 @@
 'use strict';
 
 angular
-  .module('fz.trainer', [])
+  .module('fz.trainer', [
+    'fz.list-groups'
+  ])
   .config(function ($stateProvider) {
     $stateProvider
       .state('trainer', {
         url: '/trainer',
-        templateUrl: 'client/views/trainer/trainer.html'
+        templateUrl: 'client/views/trainer/trainer.html',
+        resolve: {
+          currentUser: ($q) => {
+            var deferred = $q.defer();
+
+            Meteor.autorun(function () {
+              Meteor.subscribe('users_extended', {
+                onReady: function () {
+                  if (!Meteor.loggingIn()) {
+                    if (Meteor.user() == null) {
+                      deferred.reject('AUTH_REQUIRED');
+                    } else if (!Meteor.user().settings.trainer) {
+                      deferred.reject('TRAINER_PERMISSION_REQUIRED');
+                    } else {
+                      deferred.resolve(Meteor.user());
+                    }
+                  }
+                },
+                onStop: deferred.reject
+              });
+            });
+
+            return deferred.promise;
+          }
+        },
       });
   });
 

@@ -1,14 +1,23 @@
 <a class="fz-user-settings__link"
-  ng-show="vm.user"
-  ng-click="showSettings=true">
+  ng-show="settings.user"
+  ng-click="settings.show = true">
   <svg class="fz-user-settings__link-icon"
-    ng-class="{'fz-user-settings__link-icon--alert': !vm.user.profile.fullname}">
+    ng-class="{'fz-user-settings__link-icon--alert': !settings.user.profile.name}">
     <use xlink:href="#shape-cog"></use></svg>▾
 </a>
-<fz-popup show="showSettings" title="Настройки">
+<fz-window class="fz-window--popup" show="settings.show" window-title="Настройки">
   <h4 class="fz-user-settings__heading">Личные данные</h4>
   <div class="fz-user-settings__section">
-    <h5 class="fz-user-settings__fieldname">Полное имя</h5>
-    <fz-input model="vm.user.profile.fullname" on-ok="vm.updCurrUser()" placeholder="Ваши ФИО"></fz-input>
+    <fz-field field-name="Полное имя">
+      <fz-input-submit model="settings.user.profile.name" on-ok="settings.updCurrUser()" placeholder="Ваши ФИО"></fz-input-submit></fz-field>
   </div>
-</fz-popup>
+  <h4 class="fz-user-settings__heading">Доступные модули</h4>
+  <div class="fz-user-settings__section">
+    <div class="" ng-repeat="module in settings.getAvailableModules()">
+      <a ui-sref="{{module}}" ng-click="settings.show = false">{{settings.getModuleName(module)}}</a>
+    </div>
+    <div class="" ng-show="settings.getAvailableModules().length === 0">
+      Спасибо за регистрацию! Дождитесь, пока администратор откроет Вам доступ к функционалу системы
+    </div>
+  </div>
+</fz-window>

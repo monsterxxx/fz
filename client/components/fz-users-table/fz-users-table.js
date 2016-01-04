@@ -23,7 +23,7 @@ Ctrl.$inject = ['$scope', '$reactive'];
 function Ctrl($scope, $reactive) {
   var vm = this;
   $reactive(vm).attach($scope);
-  vm.helpers({ users: () => Meteor.users.find({}, { sort: { 'profile.fullname': 1 } }) });
+  vm.helpers({ users: () => Meteor.users.find({}, { sort: { 'profile.name': 1 } }) });
   console.log(JSON.stringify(vm.users , null, 2));
   vm.updUser = updUser;
 
