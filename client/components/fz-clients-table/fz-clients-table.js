@@ -36,10 +36,10 @@ function Ctrl($scope, $reactive) {
   }
 
   function addClient() {
-    this.newClient.createdAt = new Date();
-    console.log('newClient insert: '+ JSON.stringify(this.newClient , null, 2));
-    Clients.insert(this.newClient);
-    this.newClient = {};
+    vm.newClient.createdAt = new Date();
+    console.log('newClient insert: '+ JSON.stringify(vm.newClient , null, 2));
+    Clients.insert(vm.newClient);
+    vm.newClient = {};
   }
 
   function delClient(client) {

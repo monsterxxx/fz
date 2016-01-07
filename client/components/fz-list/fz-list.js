@@ -15,11 +15,14 @@ function fzUserSettings() {
     },
     scope: {},
     bindToController: {
-      listTitle: '=',
-      showNew: '='
+      listTitle: '@',
+      showNew: '=',
+      showAttendance: '=',
+      showCheck: '=',
+      checkModel: '='
     },
     controller: Ctrl,
-    controllerAs: 'list',
+    controllerAs: 'vm',
     link: function(scope, element, attrs){
       // Some fancy logic.
     }
@@ -33,12 +36,22 @@ Ctrl.$inject = ['$timeout'];
 
 function Ctrl($timeout) {
   var vm = this;
-  vm.add = add;
+  vm.add = add; //could not call it new, as it's reserved js word
+  vm.attendance = attendance;
+  vm.check = check;
 
   function add(event) {
     event.stopPropagation();
-    if (!vm.expanded) {vm.expanded = true;}
     vm.showNew = true;
+  }
+
+  function attendance(event) {
+    event.stopPropagation();
+    vm.showAttendance = !vm.showAttendance;
+  }
+
+  function check(event) {
+    event.stopPropagation();
   }
 }
 

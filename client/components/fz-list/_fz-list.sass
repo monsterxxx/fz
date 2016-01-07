@@ -1,14 +1,17 @@
+$fz-list-line-height: 32px
+
 .fz-list
   &__container
     max-width: 500px
-    line-height: 32px
+    line-height: $fz-list-line-height
 
   &__title
+    display: flex
     font-weight: bold
-    // border-bottom: 1px solid black
     cursor: pointer
 
   &__toggle
+    flex-shrink: 0
     margin-right: 6px
     float: left
     transform: rotate(-90deg)
@@ -16,15 +19,32 @@
     &--expanded
       transform: rotate(0)
 
+  &__title-text
+    // flex-grow: 1
+    overflow-x: hidden
+    // margin-right: auto
+
   &__menu
     margin-left: 22px
     background-color: #9E9E9E
 
     &-btn
       display: inline-block
+      // flex-grow: 1
+      flex-shrink: 0
       width: 30px
       text-align: center
       cursor: pointer
+
+    &-extra-element
+      flex-grow: 1
+      pointer-events: none
+
+    &-check
+      @extend .fz-list__menu-btn
+      // flex-grow: 0
+      // margin-left: auto
+
 
   &__content
     padding-left: 16px
@@ -35,4 +55,11 @@
 
     &__container
       padding-left: 6px
-      background-image: repeating-linear-gradient(to bottom, transparent, transparent 32px, #E0E0E0 32px, #E0E0E0 64px)
+      background-image: repeating-linear-gradient(to bottom, transparent, transparent $fz-list-line-height, #E0E0E0 $fz-list-line-height, #E0E0E0 2 * $fz-list-line-height)
+
+.fz-list--no-background
+
+  >.fz-list
+
+    &__container
+      background-image: none

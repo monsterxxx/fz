@@ -13,7 +13,7 @@ function Dir() {
     templateUrl: 'client/components/fz-form-client-add/fz-form-client-add.html',
     scope: {},
     bindToController: {
-      client: '=',
+      groupId: '@',
       show: '='
     },
     controller: Ctrl,
@@ -29,19 +29,19 @@ function Ctrl() {
   var oriModel = angular.copy(vm.client);
   vm.isFormChanged = isFormChanged;
   vm.resetForm = resetForm;
-  vm.insertGroup = insertGroup;
+  vm.addClient = addClient;
 
   function isFormChanged() {
     return !angular.equals(vm.client, oriModel);
-  };
+  }
 
   function resetForm() {
     vm.client = angular.copy(oriModel);
     vm.form.$setPristine();
   }
 
-  function insertGroup() {
-    Meteor.call('clientAdd', vm.client, Meteor.userId());
+  function addClient() {
+    Meteor.call('addClient', vm.client, vm.groupId);
     vm.resetForm();
     vm.show = false;
   }

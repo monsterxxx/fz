@@ -1,4 +1,4 @@
-<h4>Пользователи</h4>
+<fz-list class="fz-list--level-1 fz-list--no-background" list-title="Пользователи" show-new="vm.showNew">
 
 <table class="fz-table">
   <thead>
@@ -16,13 +16,14 @@
     <tr ng-repeat="user in vm.users">
       <td></td>
       <td>{{$index + 1}}</td>
-      <!-- <td>{{user.profile.name}}</td> -->
-      <td class="tbl-input"><input ng-model="user.profile.name" type="text" placeholder="Введите ФИО"></td>
+      <td>{{user.profile.name}}</td>
+      <!-- <td class="tbl-input"><input ng-model="user.profile.name" type="text" placeholder="Введите ФИО"></td> -->
       <td>{{user.username}}</td>
       <td>{{user.emails[0].address}}</td>
       <td class="tbl-check"><input type="checkbox" ng-model="user.settings.client" class="" /></td>
       <td class="tbl-check"><input type="checkbox" ng-model="user.settings.trainer" class="" /></td>
-      <td><input type="button" ng-click="vm.updUser(user._id)" value="Сохранить изменения" /></td>
+      <td><input type="button" ng-click="vm.updUserSettings(user._id)" ng-disabled="!vm.settingsChanged" value="Сохранить изменения" /></td>
     </tr>
   </tbody>
 </table>
+</fz-list>

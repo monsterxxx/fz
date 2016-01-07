@@ -34,7 +34,7 @@ function Ctrl() {
 
   function isFormChanged() {
     return !angular.equals(vm.group, oriModel);
-  };
+  }
 
   function resetForm() {
     vm.group = angular.copy(oriModel);
@@ -42,7 +42,7 @@ function Ctrl() {
   }
 
   function insertGroup() {
-    Meteor.call('groupInsert', vm.group, Meteor.userId());
+    Meteor.call('insertGroup', vm.group, Meteor.userId());
     vm.resetForm();
     vm.show = false;
   }

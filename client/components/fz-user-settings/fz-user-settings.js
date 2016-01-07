@@ -41,7 +41,7 @@ function Ctrl($scope, $reactive, $q) {
     var availableModules = [];
     if (vm.user) {
       _.each(vm.user.settings, function (available, module) {
-        if (available) {availableModules.push(module)}
+        if (available) { availableModules.push(module); }
       });
     }
     return availableModules;

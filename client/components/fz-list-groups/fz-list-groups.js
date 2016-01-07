@@ -27,8 +27,7 @@ Ctrl.$inject = ['$scope', '$reactive'];
 
 function Ctrl($scope, $reactive) {
 
-  var vm = this;
-  $reactive(vm).attach($scope);
+  let vm = $reactive(this).attach($scope);
   vm.helpers({ groups: () => Groups.find({}, { sort: { name: 1 } }) });
   vm.newGroup = {};
   vm.showNew = false;

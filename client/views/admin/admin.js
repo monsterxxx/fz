@@ -2,7 +2,9 @@
 'use strict';
 
 angular
-  .module('fz.admin', [])
+  .module('fz.admin', [
+    'fz.pivot-attendance'
+  ])
   .config(function ($stateProvider) {
     $stateProvider
       .state('admin', {
@@ -10,26 +12,32 @@ angular
         templateUrl: 'client/views/admin/admin.html',
         resolve: {
           currentUser: ($q) => {
+            console.log(JSON.stringify(Meteor.user() , null, 2));
+
             var deferred = $q.defer();
 
-            Meteor.autorun(function () {
-              Meteor.subscribe('users_extended', {
-                onReady: function () {
-                  console.log(Meteor.loggingIn());
-                  if (!Meteor.loggingIn()) {
-                    console.log(Meteor.user());
-                    if (Meteor.user() == null) {
-                      deferred.reject('AUTH_REQUIRED');
-                    } else if (!Meteor.user().settings.admin) {
-                      deferred.reject('ADMIN_PERMISSION_REQUIRED');
-                    } else {
-                      deferred.resolve(Meteor.user());
-                    }
+            // Meteor.autorun(function () {
+            //   Meteor.subscribe('users_extended', {
+            //     onReady: function () {
+
+
+
+                  if (Meteor.user() == null) {
+                    deferred.reject('AUTH_REQUIRED');
+                  } else
+
+                  if (!Meteor.user().settings.admin) {
+                    deferred.reject('ADMIN_PERMISSION_REQUIRED');
                   }
-                },
-                onStop: deferred.reject
-              });
-            });
+
+                  else {
+                    deferred.resolve();
+                  }
+
+            //     },
+            //     onStop: deferred.reject
+            //   });
+            // });
 
             return deferred.promise;
           }

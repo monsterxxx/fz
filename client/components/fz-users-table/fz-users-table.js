@@ -21,16 +21,22 @@ function fzUserSettings() {
 Ctrl.$inject = ['$scope', '$reactive'];
 
 function Ctrl($scope, $reactive) {
-  var vm = this;
-  $reactive(vm).attach($scope);
+  let vm = $reactive(this).attach($scope);
   vm.helpers({ users: () => Meteor.users.find({}, { sort: { 'profile.name': 1 } }) });
-  console.log(JSON.stringify(vm.users , null, 2));
-  vm.updUser = updUser;
+  vm.updUserSettings = updUserSettings;
+  vm.settingsChanged = settingsChanged;
 
-  function updUser(id) {
+  function updUserSettings(id) {
     var user = _.detect(vm.users, function (user) { return user._id === id; });
-    Meteor.users.update( { _id: id }, { $set: { profile: user.profile, settings: user.settings }} );
+    Meteor.users.update( { _id: id }, { $set: { settings: user.settings }} );
   }
+
+  function settingsChanged() {
+    // return function () {
+    //   for (var i = 0; i < user.profile)
+    // }
+  }
+
 }
 
 })();

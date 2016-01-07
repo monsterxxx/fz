@@ -1,6 +1,6 @@
 <fz-window show="vm.show" window-title="Добавление клиента" close="vm.resetForm()">
   <form name="vm.form" ng-submit="vm.addClient()" novalidate>
-    <fz-field field-name="Название группы">
+    <fz-field field-name="Полное имя">
       <input class="fz-input" name="vm.input" type="text" ng-model="vm.client.name" placeholder="Введите ФИО клиента" required>
     </fz-field>
     <fz-buttons-submit ok-text="Сохранить" ok-disabled="vm.form.$invalid" cancel-text="Очистить" cancel="vm.resetForm()" cancel-disabled="!vm.isFormChanged()" ></fz-buttons-submit>

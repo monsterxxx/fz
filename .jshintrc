@@ -55,6 +55,8 @@
     "node": true,
 
     "globals": {
+        "_": true,
+        "check": true,
         "Meteor": false,
         "Mongo": false,
         "Accounts": true,
@@ -62,6 +64,7 @@
         "Clients": true,
         "Groups": true,
         "Attendance": true,
+        "Leads": true,
         "angular": false,
         "$": false
     }
