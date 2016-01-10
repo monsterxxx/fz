@@ -13,16 +13,16 @@ $fz-list-line-height: 32px
   &__toggle
     flex-shrink: 0
     margin-right: 6px
-    float: left
+    // float: left
+    color: #9E9E9E //#757575
     transform: rotate(-90deg)
 
     &--expanded
       transform: rotate(0)
 
   &__title-text
-    // flex-grow: 1
     overflow-x: hidden
-    // margin-right: auto
+    white-space: nowrap
 
   &__menu
     margin-left: 22px
@@ -30,7 +30,6 @@ $fz-list-line-height: 32px
 
     &-btn
       display: inline-block
-      // flex-grow: 1
       flex-shrink: 0
       width: 30px
       text-align: center
@@ -42,8 +41,6 @@ $fz-list-line-height: 32px
 
     &-check
       @extend .fz-list__menu-btn
-      // flex-grow: 0
-      // margin-left: auto
 
 
   &__content

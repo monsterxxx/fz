@@ -1,13 +1,14 @@
 login-buttons
-  display: inline-block
-  float: right
   > div:first-child
     display: none
 
 #login-buttons
-  line-height: inherit
+  line-height: 32px
   .login-link-and-dropdown-list
     position: static
+
+.login-link-and-dropdown-list
+  height: 32px
 
 #login-sign-in-link
   margin-right: 8px
@@ -18,6 +19,10 @@ login-buttons
 
 #login-name-link
   @extend #login-sign-in-link
+  display: inline-block
+  // flex-shrink: 0
+  overflow-x: hidden
+  white-space: nowrap
 
 #login-dropdown-list
   position: absolute

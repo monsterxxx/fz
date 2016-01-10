@@ -3,16 +3,16 @@
 
 angular
   .module('fz.users-table', [])
-  .directive('fzUsersTable', fzUserSettings);
+  .directive('fzUsersTable', Dir);
 
-function fzUserSettings() {
+function Dir() {
   var directive = {
     restrict: 'E',
     templateUrl: 'client/components/fz-users-table/fz-users-table.html',
     scope: {},
     bindToController: {},
     controller: Ctrl,
-    controllerAs: 'vm',
+    controllerAs: 'vm'
   };
 
   return directive;
@@ -21,17 +21,19 @@ function fzUserSettings() {
 Ctrl.$inject = ['$scope', '$reactive'];
 
 function Ctrl($scope, $reactive) {
-  let vm = $reactive(this).attach($scope);
-  vm.helpers({ users: () => Meteor.users.find({}, { sort: { 'profile.name': 1 } }) });
-  vm.updUserSettings = updUserSettings;
+  let vm = this;
+  $reactive(vm).attach($scope);
+  vm.helpers({ users: () => Meteor.users.find({}, { sort: { 'profile.fname': 1 } }) });
+  vm.updateUserSettings = updateUserSettings;
   vm.settingsChanged = settingsChanged;
 
-  function updUserSettings(id) {
+  function updateUserSettings(id) {
     var user = _.detect(vm.users, function (user) { return user._id === id; });
-    Meteor.users.update( { _id: id }, { $set: { settings: user.settings }} );
+    Meteor.call('updateUserSettings', id, user.settings);
   }
 
   function settingsChanged() {
+    return true;
     // return function () {
     //   for (var i = 0; i < user.profile)
     // }

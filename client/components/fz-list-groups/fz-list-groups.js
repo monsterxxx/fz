@@ -15,7 +15,10 @@ function Dir() {
     restrict: 'E',
     templateUrl: 'client/components/fz-list-groups/fz-list-groups.html',
     scope: {},
-    bindToController: {},
+    bindToController: {
+      trainerName: '@',
+      trainerId: '@'
+    },
     controller: Ctrl,
     controllerAs: 'vm',
   };
@@ -27,8 +30,10 @@ Ctrl.$inject = ['$scope', '$reactive'];
 
 function Ctrl($scope, $reactive) {
 
-  let vm = $reactive(this).attach($scope);
-  vm.helpers({ groups: () => Groups.find({}, { sort: { name: 1 } }) });
+  let vm = this;
+  $reactive(vm).attach($scope);
+  let query = (vm.trainerId) ? {'trainer._id': vm.trainerId} : {}
+  vm.helpers({ groups: () => Groups.find(query, { sort: { name: 1 } }) });
   vm.newGroup = {};
   vm.showNew = false;
   vm.updGroup = updGroup;

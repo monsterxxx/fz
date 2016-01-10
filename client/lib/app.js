@@ -5,11 +5,9 @@ angular.module('fz', [
   //CORE
   'angular-meteor',
   // 'angular-meteor.auth',
-  'accounts.ui',
   'ui.router',
   //COMPONENTS
-  'fz.user-settings',
-  'fz.users-table',
+  'fz.navbar',
   'fz.clients-table',
   //LAYOUT
   'fz.admin',
@@ -78,45 +76,13 @@ angular.module('fz', [
   });
 
   $rootScope.$state = $state;
+  // $rootScope.$on('$stateChangeSuccess', function (stateTo, stateToParams, stateFrom, stateFromParams) {
+  //   console.log(stateTo, JSON.stringify(stateToParams , null, 2), stateFrom, JSON.stringify(stateFromParams , null, 2));
+  // });
   $rootScope.log = function (message) {
     console.log(message);
   };
 
-})
-
-.directive('loginButtons', Dir);
-
-function Dir() {
-  var directive = {
-    restrict: 'E',
-    controller: Ctrl,
-    controllerAs: 'vm',
-    link: Link
-  };
-
-  return directive;
-}
-
-Ctrl.$inject = ['$scope', '$reactive'];
-
-function Ctrl($scope, $reactive) {
-
-  let vm = $reactive(this).attach($scope);
-
-  vm.autorun(function () {
-    // if (Meteor.userId() && element) {
-    //   console.log(element[0].querySelector('#login-name-link'));
-    // }
-  });
-
-}
-
-function Link(scope, element) {
-  Meteor.autorun(function () {
-    if (Meteor.userId()) {
-      console.log(element[0].querySelector('#login-name-link'));
-    }
-  });
-}
+});
 
 })();

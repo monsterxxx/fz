@@ -16,13 +16,13 @@
     <tr ng-repeat="user in vm.users">
       <td></td>
       <td>{{$index + 1}}</td>
-      <td>{{user.profile.name}}</td>
-      <!-- <td class="tbl-input"><input ng-model="user.profile.name" type="text" placeholder="Введите ФИО"></td> -->
+      <td>{{user.profile.fname}}</td>
       <td>{{user.username}}</td>
       <td>{{user.emails[0].address}}</td>
       <td class="tbl-check"><input type="checkbox" ng-model="user.settings.client" class="" /></td>
       <td class="tbl-check"><input type="checkbox" ng-model="user.settings.trainer" class="" /></td>
-      <td><input type="button" ng-click="vm.updUserSettings(user._id)" ng-disabled="!vm.settingsChanged" value="Сохранить изменения" /></td>
+      <td><input type="button" ng-click="vm.updateUserSettings(user._id)" value="Сохранить изменения" /></td>
+       <!-- ng-disabled="!vm.settingsChanged()" -->
     </tr>
   </tbody>
 </table>

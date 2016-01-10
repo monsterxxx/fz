@@ -22,7 +22,7 @@ Meteor.methods({
     group.createdAt = new Date();
     group.trainer = {
       _id: trainer._id,
-      name: trainer.profile.name
+      name: trainer.profile.fname
     };
 
     Groups.insert(group);

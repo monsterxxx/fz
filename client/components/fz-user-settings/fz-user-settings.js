@@ -7,16 +7,16 @@ angular
     'fz.field',
     'fz.input-submit'
   ])
-  .directive('fzUserSettings', fzUserSettings);
+  .directive('fzUserSettings', Dir);
 
-function fzUserSettings() {
+function Dir() {
   var directive = {
     restrict: 'E',
     templateUrl: 'client/components/fz-user-settings/fz-user-settings.html',
     scope: {},
     bindToController: {},
     controller: Ctrl,
-    controllerAs: 'settings',
+    controllerAs: 'vm',
   };
 
   return directive;
@@ -29,12 +29,12 @@ function Ctrl($scope, $reactive, $q) {
   $reactive(vm).attach($scope);
   Meteor.subscribe('users_extended');
   vm.helpers({ user: () => Meteor.user() });
-  vm.updCurrUser = updCurrUser;
+  vm.updateUserProfile = updateUserProfile;
   vm.getAvailableModules = getAvailableModules;
   vm.getModuleName = getModuleName;
 
-  function updCurrUser() {
-    Meteor.users.update( { _id: Meteor.userId() }, { $set: { profile: vm.user.profile }} );
+  function updateUserProfile() {
+    Meteor.call('updateUserProfile', Meteor.userId(), vm.user.profile);
   }
 
   function getAvailableModules() {

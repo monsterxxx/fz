@@ -3,7 +3,8 @@
 
 angular
   .module('fz.admin', [
-    'fz.pivot-attendance'
+    'fz.pivot-attendance',
+    'fz.users-table'
   ])
   .config(function ($stateProvider) {
     $stateProvider
@@ -12,15 +13,11 @@ angular
         templateUrl: 'client/views/admin/admin.html',
         resolve: {
           currentUser: ($q) => {
-            console.log(JSON.stringify(Meteor.user() , null, 2));
-
             var deferred = $q.defer();
 
             // Meteor.autorun(function () {
             //   Meteor.subscribe('users_extended', {
             //     onReady: function () {
-
-
 
                   if (Meteor.user() == null) {
                     deferred.reject('AUTH_REQUIRED');
