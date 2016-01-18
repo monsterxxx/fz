@@ -45,6 +45,8 @@ Meteor.methods({
   },
 
   updateUserSettings: function (userId, settings) {
+    // console.log('updateUserSettings', userId, settings);
+
     check(userId, String);
     check(settings, {
       client: Match.Optional(Boolean),
@@ -52,6 +54,8 @@ Meteor.methods({
       admin: Match.Optional(Boolean),
       master: Match.Optional(Boolean)
     });
+
+    // console.log('checked!');
 
     if (! this.userId) {
       throw new Meteor.Error('not-logged-in',
@@ -65,7 +69,7 @@ Meteor.methods({
         'Must be admin to update user settings.');
     }
 
-    if (Meteor.isServer) {
+    // if (Meteor.isServer) {
       let userToUpdate = Users.findOne(userId);
 
       _.each(settings, function (permit, module) {
@@ -79,7 +83,8 @@ Meteor.methods({
             throw new Meteor.Error('invalid-action',
               'There are no ex-clients in the App.');
           }
-          if (module === 'trainer' && userToUpdate.trainer) {
+          if (module === 'trainer'
+            && (userToUpdate.trainer && Object.keys(userToUpdate.trainer).length > 0)) {
             throw new Meteor.Error('invalid-action',
               'There are no ex-trainers in the App.');
           }
@@ -88,7 +93,7 @@ Meteor.methods({
       });
 
       Users.update({_id: userId}, {$set: {settings: settings}});
-    }
+    // }
 
   }
 });

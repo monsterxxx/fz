@@ -1,4 +1,4 @@
-<fz-list class="fz-list--level-1" list-title="{{vm.trainerName || 'Группы'}}" show-new="vm.showNew">
+<fz-list ng-class="{'fz-list--level-1': vm.firstLevel}" list-title="{{vm.trainerName || 'Группы'}}" show-new="vm.showNew">
 
   <!-- <fz-list-new>Форма новой записи</fz-list-new> -->
   <fz-form-group-new group="vm.newGroup" show="vm.showNew"></fz-form-group-new>

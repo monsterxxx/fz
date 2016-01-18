@@ -29,6 +29,7 @@ function Ctrl($scope, $reactive, $q) {
   $reactive(vm).attach($scope);
   Meteor.subscribe('users_extended');
   vm.helpers({ user: () => Meteor.user() });
+  vm.show = false;
   vm.updateUserProfile = updateUserProfile;
   vm.getAvailableModules = getAvailableModules;
   vm.getModuleName = getModuleName;

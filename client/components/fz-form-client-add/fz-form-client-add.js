@@ -23,9 +23,12 @@ function Dir() {
   return directive;
 }
 
-function Ctrl() {
+Ctrl.$inject = ['$scope', '$reactive'];
 
+function Ctrl($scope, $reactive) {
   var vm = this;
+  $reactive(vm).attach($scope);
+
   var oriModel = angular.copy(vm.client);
   vm.isFormChanged = isFormChanged;
   vm.resetForm = resetForm;
@@ -40,12 +43,18 @@ function Ctrl() {
     vm.form.$setPristine();
   }
 
-  function addClient() {
-    Meteor.call('addClient', vm.client, vm.groupId);
+  function addClient(client) {
+    Meteor.call('addClient', client, vm.groupId);
     vm.resetForm();
     vm.show = false;
   }
 
+  // vm.search = '';
+  // vm.searchResult = [];
+  vm.subscribe('searchClients', () => {
+    return [ vm.getReactively('client.name') ];
+  });
+  vm.helpers({ foundClients: () => Clients.find( {}, { sort: [['score', 'desc']] } ) });
 }
 
 })();

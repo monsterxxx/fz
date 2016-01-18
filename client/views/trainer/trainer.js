@@ -22,6 +22,10 @@ angular
               deferred.reject('TRAINER_PERMISSION_REQUIRED');
             }
 
+            if (!Meteor.user().profile.fname) {
+              deferred.reject('USER_PROFILE_IS_EMPTY');
+            }
+
             else {
               deferred.resolve();
             }

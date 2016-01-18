@@ -4,7 +4,9 @@
 angular
   .module('fz.admin', [
     'fz.pivot-attendance',
-    'fz.users-table'
+    'fz.users-table',
+    'fz.list-groups-admin',
+    'fz.list'
   ])
   .config(function ($stateProvider) {
     $stateProvider

@@ -1,6 +1,7 @@
 Meteor.methods({
   submitAttendance: function (groupId, clients) {
-    console.log('submitAttendance');
+    // console.log('submitAttendance');
+
     check(groupId, String);
     check(clients, [Object]);
 
@@ -64,7 +65,7 @@ Meteor.methods({
 
       }
 
-      Groups.update({_id: group._id}, {$set: {clients: clients}});
+      Groups.update({_id: group._id}, {$set: {clients: clients, server: true}});
 
     }
   }

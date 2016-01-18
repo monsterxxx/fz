@@ -7,8 +7,7 @@ angular
     'fz.form-group-new',
     'fz.list-item-group'
   ])
-  .directive('fzListGroups', Dir)
-  .controller('GroupItemCtrl', GroupItemCtrl);
+  .directive('fzListGroups', Dir);
 
 function Dir() {
   var directive = {
@@ -17,7 +16,8 @@ function Dir() {
     scope: {},
     bindToController: {
       trainerName: '@',
-      trainerId: '@'
+      trainerId: '@',
+      firstLevel: '='
     },
     controller: Ctrl,
     controllerAs: 'vm',
@@ -29,10 +29,11 @@ function Dir() {
 Ctrl.$inject = ['$scope', '$reactive'];
 
 function Ctrl($scope, $reactive) {
-
   let vm = this;
   $reactive(vm).attach($scope);
-  let query = (vm.trainerId) ? {'trainer._id': vm.trainerId} : {}
+
+  vm.subscribe('groups');
+  let query = (vm.trainerId) ? {'trainer._id': vm.trainerId} : {};
   vm.helpers({ groups: () => Groups.find(query, { sort: { name: 1 } }) });
   vm.newGroup = {};
   vm.showNew = false;
@@ -47,12 +48,6 @@ function Ctrl($scope, $reactive) {
   function delGroup(group) {
     Groups.remove({_id: group._id});
   }
-
-}
-
-function GroupItemCtrl() {
-  var vm = this;
-  vm.showNew = false;
 }
 
 })();

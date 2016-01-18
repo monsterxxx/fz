@@ -48,15 +48,24 @@ $fz-list-line-height: 32px
 
 .fz-list--level-1
 
-  >.fz-list
+  >.fz-list__container
+    padding-left: 6px
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent $fz-list-line-height, #EEEEEE $fz-list-line-height, #EEEEEE 2 * $fz-list-line-height)
 
-    &__container
-      padding-left: 6px
-      background-image: repeating-linear-gradient(to bottom, transparent, transparent $fz-list-line-height, #E0E0E0 $fz-list-line-height, #E0E0E0 2 * $fz-list-line-height)
+    >.fz-list__content
+      margin-bottom: 16px
 
 .fz-list--no-background
 
-  >.fz-list
+  >.fz-list__container
+    background-image: none
 
-    &__container
-      background-image: none
+.fz-list--no-width
+
+  >.fz-list__container
+    max-width: none
+
+.fz-list--no-line-height
+
+  >.fz-list__container >.fz-list__content
+    line-height: normal

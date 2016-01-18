@@ -13,7 +13,7 @@ function Dir() {
     scope: {},
     bindToController: {
       cancel: '&',
-      okText: '@',
+      okText: '=',
       cancelText: '@',
       okDisabled: '=',
       cancelDisabled: '='

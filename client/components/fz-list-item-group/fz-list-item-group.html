@@ -8,7 +8,7 @@
 
   <div class="fz-list-item-group__attendance-footer" ng-show="vm.showAttendance">
     <div class="fz-list-item-group__attendance-count-text">Присутствующих</div><div class="fz-list-item-group__attendance-count-number">: {{vm.countChecked()}}</div>
-    <button class="fz-list-item-group__attendance-submit fz-btn fz-btn--primary" type="button" ng-click="vm.submitAttendance()">Сохранить</button>
+    <button class="fz-list-item-group__attendance-submit fz-btn fz-btn--primary" type="button" ng-click="vm.submitAttendance()" ng-disabled="!vm.isCheckChanged()">Сохранить</button>
   </div>
 
 </fz-list>

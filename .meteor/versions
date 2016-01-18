@@ -7,7 +7,6 @@ angular-meteor-data@0.0.9
 angular-templates@0.0.3
 angular:angular@1.4.8
 angularui:angular-ui-router@0.2.15
-autopublish@1.0.4
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
@@ -22,6 +21,7 @@ caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
 check@1.1.0
+chuangbo:cookie@1.1.0
 dburles:mongo-collection-instances@0.3.4
 ddp@1.2.2
 ddp-client@1.2.1
@@ -44,7 +44,6 @@ html-tools@1.0.5
 htmljs@1.0.5
 http@1.1.1
 id-map@1.0.4
-insecure@1.0.4
 jquery@1.11.4
 lai:collection-extensions@0.1.4
 launch-screen@1.0.4
@@ -54,6 +53,9 @@ localstorage@1.0.5
 logging@1.0.8
 meteor@1.1.10
 meteor-base@1.0.1
+meteorhacks:fast-render@2.11.0
+meteorhacks:inject-data@1.4.1
+meteorhacks:picker@1.0.3
 minifiers@1.1.7
 minimongo@1.0.10
 mizzao:build-fetcher@0.2.0

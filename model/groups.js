@@ -1,7 +1,9 @@
 Meteor.methods({
   insertGroup: function (group, trainerId) {
-    check(group, Object);
     check(trainerId, String);
+    check(group, {
+      name: String
+    });
 
     if (! this.userId) {
       throw new Meteor.Error('not-logged-in',
@@ -15,15 +17,18 @@ Meteor.methods({
         'Must be trainer or admin to insert new group.');
     }
 
-    var trainer = this.userId === trainerId
+    var trainer = (this.userId === trainerId)
       ? user
       : Meteor.users.findOne(trainerId);
+
+    // console.log(trainer);
 
     group.createdAt = new Date();
     group.trainer = {
       _id: trainer._id,
       name: trainer.profile.fname
     };
+    group.clients = [];
 
     Groups.insert(group);
 
