@@ -64,7 +64,7 @@ function Ctrl($scope, $reactive) {
       oriClients = angular.copy(newG.clients);
       vm.group.server = false;
     }
-  }, true)
+  }, true);
 
 }
 

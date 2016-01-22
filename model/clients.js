@@ -10,7 +10,7 @@ Meteor.methods({
         'Must be logged in to insert new client.');
     }
 
-    var user = Meteor.users.findOne(this.userId);
+    var user = Users.findOne(this.userId);
 
     if (! (user.settings.trainer || user.settings.admin)) {
       throw new Meteor.Error('no-permission',

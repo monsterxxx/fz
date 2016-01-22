@@ -1,5 +1,5 @@
 Meteor.publish('groups', function () {
-  let user = Meteor.users.findOne(this.userId);
+  let user = Users.findOne(this.userId);
 
   if (user.settings.admin) {
     return Groups.find({});
@@ -18,15 +18,6 @@ Meteor.publish('groups', function () {
     }
 
     return Groups.find({'_id': {$in : groupIds}});
-  }
-
-});
-
-Meteor.publish('trainers', function () {
-  let user = Meteor.users.findOne(this.userId);
-
-  if (user.settings.admin) {
-    return Meteor.users.find({'settings.trainer': true});
   }
 
 });

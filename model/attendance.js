@@ -10,7 +10,7 @@ Meteor.methods({
         'Must be logged in to submit attendance.');
     }
 
-    var user = Meteor.users.findOne(this.userId);
+    var user = Users.findOne(this.userId);
 
     var group = Groups.findOne(groupId);
 

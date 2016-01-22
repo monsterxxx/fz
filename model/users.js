@@ -23,7 +23,7 @@ Meteor.methods({
         'Must be logged in to update user profile.');
     }
 
-    let user = Meteor.users.findOne(this.userId);
+    let user = Users.findOne(this.userId);
 
     if (! (userId === this.userId || user.settings.admin)) {
       throw new Meteor.Error('no-permission',
@@ -62,18 +62,20 @@ Meteor.methods({
         'Must be logged in to update user settings.');
     }
 
-    let user = Meteor.users.findOne(this.userId);
+    let user = Users.findOne(this.userId);
 
     if (! (user.settings.admin)) {
       throw new Meteor.Error('no-permission',
-        'Must be admin to update user settings.');
+        'Must be an admin to update user settings.');
     }
 
-    // if (Meteor.isServer) {
+    if (Meteor.isServer) {
       let userToUpdate = Users.findOne(userId);
 
-      _.each(settings, function (permit, module) {
-        if (permit !== userToUpdate.settings[module]) {
+      // console.log(JSON.stringify(userToUpdate , null, 2));
+
+      _.each(settings, function (permition, module) {
+        if (permition !== userToUpdate.settings[module]) {
 
           if (['admin', 'master'].indexOf(module) >= 0) {
             throw new Meteor.Error('no-permission',
@@ -93,7 +95,7 @@ Meteor.methods({
       });
 
       Users.update({_id: userId}, {$set: {settings: settings}});
-    // }
+    }
 
   }
 });

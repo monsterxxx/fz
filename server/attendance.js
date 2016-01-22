@@ -1,5 +1,5 @@
 Meteor.publish('attendance', function () {
-  let user = Meteor.users.findOne(this.userId);
+  let user = Users.findOne(this.userId);
 
   if (user.settings.admin) {
     return Attendance.find({});

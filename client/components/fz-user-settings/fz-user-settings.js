@@ -27,7 +27,6 @@ Ctrl.$inject = ['$scope', '$reactive', '$q'];
 function Ctrl($scope, $reactive, $q) {
   var vm = this;
   $reactive(vm).attach($scope);
-  Meteor.subscribe('users_extended');
   vm.helpers({ user: () => Meteor.user() });
   vm.show = false;
   vm.updateUserProfile = updateUserProfile;

@@ -10,7 +10,7 @@ Meteor.methods({
         'Must be logged in to insert new group.');
     }
 
-    var user = Meteor.users.findOne(this.userId);
+    var user = Users.findOne(this.userId);
 
     if (! (user.settings.trainer || user.settings.admin)) {
       throw new Meteor.Error('no-permission',
@@ -19,7 +19,7 @@ Meteor.methods({
 
     var trainer = (this.userId === trainerId)
       ? user
-      : Meteor.users.findOne(trainerId);
+      : Users.findOne(trainerId);
 
     // console.log(trainer);
 

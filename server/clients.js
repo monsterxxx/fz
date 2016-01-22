@@ -3,7 +3,7 @@ Clients._ensureIndex({
 });
 
 Meteor.publish('searchClients', function(name) {
-  let user = Meteor.users.findOne(this.userId);
+  let user = Users.findOne(this.userId);
 
   if (name && (user.settings.admin || user.settings.trainer)) {
     return Clients.find(

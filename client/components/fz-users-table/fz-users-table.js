@@ -24,26 +24,31 @@ Ctrl.$inject = ['$scope', '$reactive'];
 function Ctrl($scope, $reactive) {
   let vm = this;
   $reactive(vm).attach($scope);
-  vm.helpers({ users: () => Meteor.users.find({}, { sort: { 'profile.fname': 1 } })});
-
+  vm.subscribe('users_for_admin');
+  vm.helpers({ users: () => Users.find({}, { sort: { 'profile.fname': 1 } })});
 }
 
 function FzUsersTableRowCtrl($scope) {
   let vm = this;
-  vm.oriUser = angular.copy($scope.user);
-  vm.isUserChanged = isUserChanged;
+  vm.oriSettings = angular.copy($scope.user.settings);
+  $scope.$watch('user', userChanged, true);
   vm.updateUserSettings = updateUserSettings;
 
   function updateUserSettings() {
-    // var user = _.detect(vm.users, function (user) { return user._id === id; });
     Meteor.call('updateUserSettings', $scope.user._id, $scope.user.settings);
-    vm.oriUser = angular.copy($scope.user);
   }
 
-  function isUserChanged() {
-    return !angular.equals($scope.user, vm.oriUser);
+  function userChanged(user) {
+    if (user.server === true) {
+      vm.oriSettings = angular.copy(user.settings);
+      user.server = false;
+    }
+    else {
+      vm.areSettingsChanged = _.any(user.settings, function (available, module) {
+        return available !== !!vm.oriSettings[module];
+      });
+    }
   }
-
 }
 
 })();

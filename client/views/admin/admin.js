@@ -18,7 +18,7 @@ angular
             var deferred = $q.defer();
 
             // Meteor.autorun(function () {
-            //   Meteor.subscribe('users_extended', {
+            //   Meteor.subscribe('users_for_admin', {
             //     onReady: function () {
 
                   if (Meteor.user() == null) {
