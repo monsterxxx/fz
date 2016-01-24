@@ -18,7 +18,7 @@ angular
               deferred.reject('AUTH_REQUIRED');
             } else
 
-            if (!Meteor.user().settings.trainer) {
+            if (!Meteor.user().role.trainer) {
               deferred.reject('TRAINER_PERMISSION_REQUIRED');
             }
 
@@ -32,6 +32,9 @@ angular
 
             return deferred.promise;
           }
+        },
+        controller: function () {
+          Meteor.subscribe('groups');
         }
       });
   });

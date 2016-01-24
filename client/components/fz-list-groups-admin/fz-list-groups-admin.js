@@ -26,7 +26,7 @@ Ctrl.$inject = ['$scope', '$reactive'];
 function Ctrl($scope, $reactive) {
   let vm = this;
   $reactive(vm).attach($scope);
-  vm.helpers({ trainers: () => Users.find({'settings.trainer': true}, {sort: {'profile.fname': 1}}) });
+  vm.helpers({ trainers: () => Users.find({'role.trainer': true}, {sort: {'profile.fname': 1}}) });
 }
 
 })();

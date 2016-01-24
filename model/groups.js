@@ -12,7 +12,7 @@ Meteor.methods({
 
     var user = Users.findOne(this.userId);
 
-    if (! (user.settings.trainer || user.settings.admin)) {
+    if (! (user.role.trainer || user.role.admin)) {
       throw new Meteor.Error('no-permission',
         'Must be trainer or admin to insert new group.');
     }
@@ -29,6 +29,7 @@ Meteor.methods({
       name: trainer.profile.fname
     };
     group.clients = [];
+    group.server = true;
 
     Groups.insert(group);
 

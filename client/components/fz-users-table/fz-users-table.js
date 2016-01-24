@@ -30,21 +30,21 @@ function Ctrl($scope, $reactive) {
 
 function FzUsersTableRowCtrl($scope) {
   let vm = this;
-  vm.oriSettings = angular.copy($scope.user.settings);
+  vm.oriSettings = angular.copy($scope.user.role);
   $scope.$watch('user', userChanged, true);
   vm.updateUserSettings = updateUserSettings;
 
   function updateUserSettings() {
-    Meteor.call('updateUserSettings', $scope.user._id, $scope.user.settings);
+    Meteor.call('updateUserSettings', $scope.user._id, $scope.user.role);
   }
 
   function userChanged(user) {
     if (user.server === true) {
-      vm.oriSettings = angular.copy(user.settings);
+      vm.oriSettings = angular.copy(user.role) || {};
       user.server = false;
     }
     else {
-      vm.areSettingsChanged = _.any(user.settings, function (available, module) {
+      vm.areSettingsChanged = _.any(user.role, function (available, module) {
         return available !== !!vm.oriSettings[module];
       });
     }

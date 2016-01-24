@@ -25,7 +25,7 @@ Meteor.methods({
 
     let user = Users.findOne(this.userId);
 
-    if (! (userId === this.userId || user.settings.admin)) {
+    if (! (userId === this.userId || user.role.admin)) {
       throw new Meteor.Error('no-permission',
         'Must be the user or admin to update user profile.');
     }
@@ -44,11 +44,11 @@ Meteor.methods({
 
   },
 
-  updateUserSettings: function (userId, settings) {
-    // console.log('updateUserSettings', userId, settings);
+  updateUserSettings: function (userId, role) {
+    // console.log('updateUserSettings', userId, role);
 
     check(userId, String);
-    check(settings, {
+    check(role, {
       client: Match.Optional(Boolean),
       trainer: Match.Optional(Boolean),
       admin: Match.Optional(Boolean),
@@ -59,14 +59,14 @@ Meteor.methods({
 
     if (! this.userId) {
       throw new Meteor.Error('not-logged-in',
-        'Must be logged in to update user settings.');
+        'Must be logged in to update user role.');
     }
 
     let user = Users.findOne(this.userId);
 
-    if (! (user.settings.admin)) {
+    if (! (user.role.admin)) {
       throw new Meteor.Error('no-permission',
-        'Must be an admin to update user settings.');
+        'Must be an admin to update user role.');
     }
 
     if (Meteor.isServer) {
@@ -74,8 +74,8 @@ Meteor.methods({
 
       // console.log(JSON.stringify(userToUpdate , null, 2));
 
-      _.each(settings, function (permition, module) {
-        if (permition !== userToUpdate.settings[module]) {
+      _.each(role, function (permition, module) {
+        if (permition !== userToUpdate.role[module]) {
 
           if (['admin', 'master'].indexOf(module) >= 0) {
             throw new Meteor.Error('no-permission',
@@ -94,7 +94,7 @@ Meteor.methods({
         }
       });
 
-      Users.update({_id: userId}, {$set: {settings: settings}});
+      Users.update({_id: userId}, {$set: {role: role}});
     }
 
   }

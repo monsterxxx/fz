@@ -22,9 +22,9 @@ function Dir() {
   return directive;
 }
 
-Ctrl.$inject = ['$scope', '$reactive', '$q'];
+Ctrl.$inject = ['$scope', '$reactive'];
 
-function Ctrl($scope, $reactive, $q) {
+function Ctrl($scope, $reactive) {
   var vm = this;
   $reactive(vm).attach($scope);
   vm.helpers({ user: () => Meteor.user() });
@@ -40,8 +40,8 @@ function Ctrl($scope, $reactive, $q) {
   function getAvailableModules() {
     var availableModules = [];
     if (vm.user) {
-      _.each(vm.user.settings, function (available, module) {
-        if (available) { availableModules.push(module); }
+      _.each(vm.user.role, function (appointed, role) {
+        if (appointed) { availableModules.push(role); }
       });
     }
     return availableModules;
@@ -57,21 +57,6 @@ function Ctrl($scope, $reactive, $q) {
         return 'Администратор';
     }
   }
-
-  // waitForUser().then(function (user) {
-  //   console.log('deferred user '+ JSON.stringify(user , null, 2));
-  //   vm.helpers({ user: () => user });
-  // });
-  //
-  // function waitForUser() {
-  //   var deferred = $q.defer();
-  //   vm.autorun(function () {
-  //     if (!Meteor.loggingIn()) deferred.resolve(Meteor.user());
-  //   });
-  //   return deferred.promise;
-  // }
-
-
 }
 
 })();

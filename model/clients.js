@@ -3,7 +3,7 @@ Meteor.methods({
     check(client, Object);
     check(groupId, String);
 
-    console.log(client);
+    // console.log(client);
 
     if (! this.userId) {
       throw new Meteor.Error('not-logged-in',
@@ -12,7 +12,7 @@ Meteor.methods({
 
     var user = Users.findOne(this.userId);
 
-    if (! (user.settings.trainer || user.settings.admin)) {
+    if (! (user.role.trainer || user.role.admin)) {
       throw new Meteor.Error('no-permission',
         'Must be trainer or admin to insert new client.');
     }

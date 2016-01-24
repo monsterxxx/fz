@@ -5,7 +5,7 @@ Clients._ensureIndex({
 Meteor.publish('searchClients', function(name) {
   let user = Users.findOne(this.userId);
 
-  if (name && (user.settings.admin || user.settings.trainer)) {
+  if (name && (user.role.admin || user.role.trainer)) {
     return Clients.find(
       { $text: {
           $search: name

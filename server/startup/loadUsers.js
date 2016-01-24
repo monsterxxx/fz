@@ -1,5 +1,6 @@
 Meteor.startup(function () {
-  // Meteor.users.update({username: 'monsterxxx'}, {$set: {'settings.admin': true}}); //Works
+
+  // Meteor.users.update({username: 'admin'}, {$set: {'role.admin': true}}); //Works
 
     // Users.find({}).forEach(
     //     function (elem) {

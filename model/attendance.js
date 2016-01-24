@@ -10,11 +10,11 @@ Meteor.methods({
         'Must be logged in to submit attendance.');
     }
 
-    var user = Users.findOne(this.userId);
+    var user = Meteor.user();
 
     var group = Groups.findOne(groupId);
 
-    if (! ((user.settings.trainer && this.userId === group.trainer._id) || user.settings.admin)) {
+    if (! ((user.role.trainer && this.userId === group.trainer._id) || user.role.admin)) {
       throw new Meteor.Error('no-permission',
         'Must be trainer of this group or admin to submit attendance.');
     }
@@ -26,16 +26,11 @@ Meteor.methods({
 
       // console.log('group:'+ JSON.stringify(group , null, 2));
 
-      var startDate = new Date(); // this is the starting date that looks like ISODate("2014-10-03T04:00:00.188Z")
-
-      startDate.setSeconds(0);
-      startDate.setHours(0);
-      startDate.setMinutes(0);
+      var startDate = new Date();
+      startDate.setHours(0,0,0,0);
 
       var dateMidnight = new Date(startDate);
-      dateMidnight.setHours(23);
-      dateMidnight.setMinutes(59);
-      dateMidnight.setSeconds(59);
+      dateMidnight.setHours(23,59,59,999);
 
       var attendance = {},
           now = new Date();
@@ -65,7 +60,7 @@ Meteor.methods({
 
       }
 
-      Groups.update({_id: group._id}, {$set: {clients: clients, server: true}});
+      Groups.update({_id: group._id}, {$set: {clients: clients, attendanceCheckedAt: now}});
 
     }
   }

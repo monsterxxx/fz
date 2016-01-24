@@ -25,7 +25,7 @@ angular
                     deferred.reject('AUTH_REQUIRED');
                   } else
 
-                  if (!Meteor.user().settings.admin) {
+                  if (!Meteor.user().role.admin) {
                     deferred.reject('ADMIN_PERMISSION_REQUIRED');
                   }
 
@@ -40,6 +40,9 @@ angular
 
             return deferred.promise;
           }
+        },
+        controller: function () {
+          Meteor.subscribe('groups');
         }
       });
   });
