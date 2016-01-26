@@ -60,7 +60,7 @@ function Ctrl($scope, $reactive) {
   }
 
   $scope.$watch(() => vm.group, function (newG, oldG) {
-    if (newG.server === true) {
+    if (newG && newG.server === true) {
       oriClients = angular.copy(newG.clients);
       vm.group.server = false;
     }

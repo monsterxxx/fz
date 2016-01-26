@@ -68,6 +68,8 @@ angular.module('fz', [
 })
 
 .run(function ($state, $rootScope) {
+  //initialize fastclick
+  FastClick.attach(document.body);
 
   //when user loggs in or out go to home state
   Meteor.autorun(function () {
